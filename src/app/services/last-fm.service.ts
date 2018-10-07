@@ -8,11 +8,12 @@ import { map } from 'rxjs/operators';
 export class LastFmService {
   ApiKey = 'd691ab5c6da38d465c768feda73355e7';
   infoArtist: any;
+  songsArtist: any;
   constructor(
     public _http: HttpClient
   ) { }
 
-  getArtist(artist) {
+  getArtist(artist: string) {
     return this._http.get(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${artist}&api_key=${this.ApiKey}&format=json`)
       .pipe(map((data: any) => {
         return this.infoArtist = {
@@ -22,8 +23,14 @@ export class LastFmService {
       }));
   }
 
-  getSongs() {
-
+  getSongs(artist: string) {
+    return this._http.get(`http://ws.audioscrobbler.com/2.0/?method=user.getartisttracks&user=rj&artist=${artist}&api_key=${this.ApiKey}&format=json`)
+      .pipe(map((data: any) => {
+        this.songsArtist = data.artisttracks.track.map((songs) => ({
+          name: songs.name
+        }));
+        return this.songsArtist;
+      }));
   }
 
 }

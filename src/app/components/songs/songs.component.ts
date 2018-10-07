@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { LastFmService } from '../../services/last-fm.service';
 
 @Component({
   selector: 'app-songs',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SongsComponent implements OnInit {
 
-  constructor() { }
+  currentArtist: string;
+  arrSongs: any[] = [];
+
+  constructor(
+    private _lastFmSrv: LastFmService
+  ) { }
 
   ngOnInit() {
+  }
+
+  getSongs(artist: string) {
+    this.currentArtist = artist;
+    console.log(artist);
+    this._lastFmSrv.getSongs(artist).subscribe((data) => {
+      this.arrSongs = data;
+      console.log(data)
+    });
   }
 
 }

@@ -1,7 +1,13 @@
-<div class="card">
+<div class="row spaces-t-d-10">
+  <div class="col-12  d-flex justify-content-center">
+    <app-artist (valueChange)="getSongs($event)"></app-artist>
+  </div>
+</div>
+
+<div class="card" *ngFor="let song of arrSongs">
   <div class="card-body">
     <div class="row">
-      <div class="col align-self-center">Nombre de canción</div>
+      <div class="col align-self-center">{{song.name}}</div>
       <div class="col-2 align-self-center">
         <button class="btn btn-success"><i class="fa fa-thumbs-up"></i></button>
       </div>
