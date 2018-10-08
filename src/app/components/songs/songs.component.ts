@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LastFmService } from '../../services/last-fm.service';
 
 @Component({
@@ -8,7 +8,6 @@ import { LastFmService } from '../../services/last-fm.service';
 })
 export class SongsComponent implements OnInit {
 
-  currentArtist: string;
   arrSongs: any[] = [];
 
   constructor(
@@ -19,12 +18,20 @@ export class SongsComponent implements OnInit {
   }
 
   getSongs(artist: string) {
-    this.currentArtist = artist;
-    console.log(artist);
     this._lastFmSrv.getSongs(artist).subscribe((data) => {
       this.arrSongs = data;
-      console.log(data)
     });
+  }
+
+  changeCount(like: boolean, pos: string, numberLikes: number) {
+    if (like) {
+      this.arrSongs[pos].likes = numberLikes + 1;
+    } else {
+      if (numberLikes !== 0) {
+        this.arrSongs[pos].likes = numberLikes - 1;
+      }
+    }
+    this.arrSongs.sort((a, b) =>  a.likes - b.likes).reverse();
   }
 
 }

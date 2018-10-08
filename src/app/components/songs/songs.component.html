@@ -4,15 +4,17 @@
   </div>
 </div>
 
-<div class="card" *ngFor="let song of arrSongs">
+<div class="card" *ngFor="let song of arrSongs; let i = index">
   <div class="card-body">
     <div class="row">
       <div class="col align-self-center">{{song.name}}</div>
       <div class="col-2 align-self-center">
-        <button class="btn btn-success"><i class="fa fa-thumbs-up"></i></button>
+        <button class="btn btn-success" (click)="changeCount(true, i, song.likes)"><i class="fa fa-thumbs-up"></i></button>
       </div>
-      <div class="col-2 align-self-center"><button class="btn btn-danger"><i class="fa fa-thumbs-down"></i></button></div>
-      <div class="col-1 align-self-center">5</div>
+      <div class="col-2 align-self-center">
+        <button class="btn btn-danger" (click)="changeCount(false, i, song.likes)"><i class="fa fa-thumbs-down"></i></button>
+      </div>
+      <div class="col-1 align-self-center">{{song.likes}}</div>
     </div>
   </div>
 </div>

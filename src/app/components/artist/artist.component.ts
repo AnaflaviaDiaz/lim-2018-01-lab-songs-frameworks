@@ -11,7 +11,7 @@ export class ArtistComponent implements OnInit {
   @Output() valueChange = new EventEmitter();
   nameArtist: string;
   imageArtist: any;
-  arrArtist = ['eminem', 'bruno+mars', 'drake', 'calvin+harris', 'michael+jackson'];
+  arrArtist = ['calvin+harris', 'bruno+mars', 'drake', 'eminem', 'michael+jackson'];
   currentNameArtist = this.arrArtist[0];
 
   constructor(

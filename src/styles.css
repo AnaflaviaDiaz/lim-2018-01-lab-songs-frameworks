@@ -9998,3 +9998,7 @@ a.text-dark:hover {
 .spaces-t-d-10 {
     margin: 10px 0;
 }
+
+body {
+  background-color: #343a40;
+}
