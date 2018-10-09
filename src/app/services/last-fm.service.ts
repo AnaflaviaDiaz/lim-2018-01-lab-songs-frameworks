@@ -13,7 +13,7 @@ export class LastFmService {
 
   getArtist(artist: string) {
     let infoArtist: any;
-    return this._http.get(`http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${artist}&api_key=d691ab5c6da38d465c768feda73355e7&format=json`)
+    return this._http.get(`https://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=${artist}&api_key=d691ab5c6da38d465c768feda73355e7&format=json`)
       .pipe(map((data: any) => {
         return infoArtist = {
           image: data.artist.image[2],
@@ -24,7 +24,7 @@ export class LastFmService {
 
   getSongs(artist: string) {
     let songsArtist: any;
-    return this._http.get(`http://ws.audioscrobbler.com/2.0/?method=user.getartisttracks&user=rj&artist=${artist}&api_key=d691ab5c6da38d465c768feda73355e7&format=json`)
+    return this._http.get(`https://ws.audioscrobbler.com/2.0/?method=user.getartisttracks&user=rj&artist=${artist}&api_key=d691ab5c6da38d465c768feda73355e7&format=json`)
       .pipe(map((data: any) => {
         songsArtist = data.artisttracks.track.map((songs) => ({
           name: songs.name,
